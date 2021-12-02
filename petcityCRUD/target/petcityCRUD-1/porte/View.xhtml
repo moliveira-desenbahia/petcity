@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPorteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPorteLabel_id}"/>
+                    <h:outputText value="#{porteController.selected.id}" title="#{bundle.ViewPorteTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPorteLabel_nome}"/>
+                    <h:outputText value="#{porteController.selected.nome}" title="#{bundle.ViewPorteTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewPorteLabel_dataInclusao}"/>
+                    <h:outputText value="#{porteController.selected.dataInclusao}" title="#{bundle.ViewPorteTitle_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{porteController.destroyAndView}" value="#{bundle.ViewPorteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPorteEditLink}"/>
+                <br />
+                <h:commandLink action="#{porteController.prepareCreate}" value="#{bundle.ViewPorteCreateLink}" />
+                <br />
+                <h:commandLink action="#{porteController.prepareList}" value="#{bundle.ViewPorteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPorteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateLocalizacaopetTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateLocalizacaopetLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{localizacaopetController.selected.id}" title="#{bundle.CreateLocalizacaopetTitle_id}" required="true" requiredMessage="#{bundle.CreateLocalizacaopetRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateLocalizacaopetLabel_latitude}" for="latitude" />
+                    <h:inputText id="latitude" value="#{localizacaopetController.selected.latitude}" title="#{bundle.CreateLocalizacaopetTitle_latitude}" required="true" requiredMessage="#{bundle.CreateLocalizacaopetRequiredMessage_latitude}"/>
+                    <h:outputLabel value="#{bundle.CreateLocalizacaopetLabel_longitude}" for="longitude" />
+                    <h:inputText id="longitude" value="#{localizacaopetController.selected.longitude}" title="#{bundle.CreateLocalizacaopetTitle_longitude}" required="true" requiredMessage="#{bundle.CreateLocalizacaopetRequiredMessage_longitude}"/>
+                    <h:outputLabel value="#{bundle.CreateLocalizacaopetLabel_observacao}" for="observacao" />
+                    <h:inputTextarea rows="4" cols="30" id="observacao" value="#{localizacaopetController.selected.observacao}" title="#{bundle.CreateLocalizacaopetTitle_observacao}" />
+                    <h:outputLabel value="#{bundle.CreateLocalizacaopetLabel_dataInclusao}" for="dataInclusao" />
+                    <h:inputText id="dataInclusao" value="#{localizacaopetController.selected.dataInclusao}" title="#{bundle.CreateLocalizacaopetTitle_dataInclusao}" required="true" requiredMessage="#{bundle.CreateLocalizacaopetRequiredMessage_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateLocalizacaopetLabel_petId}" for="petId" />
+                    <h:selectOneMenu id="petId" value="#{localizacaopetController.selected.petId}" title="#{bundle.CreateLocalizacaopetTitle_petId}" required="true" requiredMessage="#{bundle.CreateLocalizacaopetRequiredMessage_petId}">
+                        <f:selectItems value="#{petController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{localizacaopetController.create}" value="#{bundle.CreateLocalizacaopetSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{localizacaopetController.prepareList}" value="#{bundle.CreateLocalizacaopetShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateLocalizacaopetIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

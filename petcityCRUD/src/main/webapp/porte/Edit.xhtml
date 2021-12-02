@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPorteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPorteLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{porteController.selected.id}" title="#{bundle.EditPorteTitle_id}" required="true" requiredMessage="#{bundle.EditPorteRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditPorteLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{porteController.selected.nome}" title="#{bundle.EditPorteTitle_nome}" />
+                    <h:outputLabel value="#{bundle.EditPorteLabel_dataInclusao}" for="dataInclusao" />
+                    <h:inputText id="dataInclusao" value="#{porteController.selected.dataInclusao}" title="#{bundle.EditPorteTitle_dataInclusao}" required="true" requiredMessage="#{bundle.EditPorteRequiredMessage_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <h:commandLink action="#{porteController.update}" value="#{bundle.EditPorteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPorteViewLink}"/>
+                <br />
+                <h:commandLink action="#{porteController.prepareList}" value="#{bundle.EditPorteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPorteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPelagemTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPelagemLabel_id}"/>
+                    <h:outputText value="#{pelagemController.selected.id}" title="#{bundle.ViewPelagemTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewPelagemLabel_nome}"/>
+                    <h:outputText value="#{pelagemController.selected.nome}" title="#{bundle.ViewPelagemTitle_nome}"/>
+                    <h:outputText value="#{bundle.ViewPelagemLabel_dataInclusao}"/>
+                    <h:outputText value="#{pelagemController.selected.dataInclusao}" title="#{bundle.ViewPelagemTitle_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pelagemController.destroyAndView}" value="#{bundle.ViewPelagemDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPelagemEditLink}"/>
+                <br />
+                <h:commandLink action="#{pelagemController.prepareCreate}" value="#{bundle.ViewPelagemCreateLink}" />
+                <br />
+                <h:commandLink action="#{pelagemController.prepareList}" value="#{bundle.ViewPelagemShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPelagemIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

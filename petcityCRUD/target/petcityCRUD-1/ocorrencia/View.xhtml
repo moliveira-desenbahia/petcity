@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOcorrenciaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOcorrenciaLabel_id}"/>
+                    <h:outputText value="#{ocorrenciaController.selected.id}" title="#{bundle.ViewOcorrenciaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewOcorrenciaLabel_descricao}"/>
+                    <h:outputText value="#{ocorrenciaController.selected.descricao}" title="#{bundle.ViewOcorrenciaTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewOcorrenciaLabel_dataInclusao}"/>
+                    <h:outputText value="#{ocorrenciaController.selected.dataInclusao}" title="#{bundle.ViewOcorrenciaTitle_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewOcorrenciaLabel_petId}"/>
+                    <h:outputText value="#{ocorrenciaController.selected.petId}" title="#{bundle.ViewOcorrenciaTitle_petId}"/>
+                    <h:outputText value="#{bundle.ViewOcorrenciaLabel_tipoocorrenciaId}"/>
+                    <h:outputText value="#{ocorrenciaController.selected.tipoocorrenciaId}" title="#{bundle.ViewOcorrenciaTitle_tipoocorrenciaId}"/>
+                    <h:outputText value="#{bundle.ViewOcorrenciaLabel_usuarioId}"/>
+                    <h:outputText value="#{ocorrenciaController.selected.usuarioId}" title="#{bundle.ViewOcorrenciaTitle_usuarioId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{ocorrenciaController.destroyAndView}" value="#{bundle.ViewOcorrenciaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOcorrenciaEditLink}"/>
+                <br />
+                <h:commandLink action="#{ocorrenciaController.prepareCreate}" value="#{bundle.ViewOcorrenciaCreateLink}" />
+                <br />
+                <h:commandLink action="#{ocorrenciaController.prepareList}" value="#{bundle.ViewOcorrenciaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOcorrenciaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

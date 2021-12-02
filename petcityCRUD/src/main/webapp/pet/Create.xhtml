@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePetTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePetLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{petController.selected.id}" title="#{bundle.CreatePetTitle_id}" required="true" requiredMessage="#{bundle.CreatePetRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreatePetLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{petController.selected.nome}" title="#{bundle.CreatePetTitle_nome}" />
+                    <h:outputLabel value="#{bundle.CreatePetLabel_situacao}" for="situacao" />
+                    <h:inputText id="situacao" value="#{petController.selected.situacao}" title="#{bundle.CreatePetTitle_situacao}" />
+                    <h:outputLabel value="#{bundle.CreatePetLabel_disponivelAdocao}" for="disponivelAdocao" />
+                    <h:inputText id="disponivelAdocao" value="#{petController.selected.disponivelAdocao}" title="#{bundle.CreatePetTitle_disponivelAdocao}" required="true" requiredMessage="#{bundle.CreatePetRequiredMessage_disponivelAdocao}"/>
+                    <h:outputLabel value="#{bundle.CreatePetLabel_dataInclusao}" for="dataInclusao" />
+                    <h:inputText id="dataInclusao" value="#{petController.selected.dataInclusao}" title="#{bundle.CreatePetTitle_dataInclusao}" required="true" requiredMessage="#{bundle.CreatePetRequiredMessage_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreatePetLabel_pelagemId}" for="pelagemId" />
+                    <h:selectOneMenu id="pelagemId" value="#{petController.selected.pelagemId}" title="#{bundle.CreatePetTitle_pelagemId}" >
+                        <f:selectItems value="#{pelagemController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePetLabel_pessoaresponsavelId}" for="pessoaresponsavelId" />
+                    <h:selectOneMenu id="pessoaresponsavelId" value="#{petController.selected.pessoaresponsavelId}" title="#{bundle.CreatePetTitle_pessoaresponsavelId}" >
+                        <f:selectItems value="#{pessoaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePetLabel_porteId}" for="porteId" />
+                    <h:selectOneMenu id="porteId" value="#{petController.selected.porteId}" title="#{bundle.CreatePetTitle_porteId}" >
+                        <f:selectItems value="#{porteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreatePetLabel_racaId}" for="racaId" />
+                    <h:selectOneMenu id="racaId" value="#{petController.selected.racaId}" title="#{bundle.CreatePetTitle_racaId}" >
+                        <f:selectItems value="#{racaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{petController.create}" value="#{bundle.CreatePetSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{petController.prepareList}" value="#{bundle.CreatePetShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePetIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

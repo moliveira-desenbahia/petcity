@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewLocalizacaoalertaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewLocalizacaoalertaLabel_id}"/>
+                    <h:outputText value="#{localizacaoalertaController.selected.id}" title="#{bundle.ViewLocalizacaoalertaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewLocalizacaoalertaLabel_latitude}"/>
+                    <h:outputText value="#{localizacaoalertaController.selected.latitude}" title="#{bundle.ViewLocalizacaoalertaTitle_latitude}"/>
+                    <h:outputText value="#{bundle.ViewLocalizacaoalertaLabel_longitude}"/>
+                    <h:outputText value="#{localizacaoalertaController.selected.longitude}" title="#{bundle.ViewLocalizacaoalertaTitle_longitude}"/>
+                    <h:outputText value="#{bundle.ViewLocalizacaoalertaLabel_observacao}"/>
+                    <h:outputText value="#{localizacaoalertaController.selected.observacao}" title="#{bundle.ViewLocalizacaoalertaTitle_observacao}"/>
+                    <h:outputText value="#{bundle.ViewLocalizacaoalertaLabel_dataInclusao}"/>
+                    <h:outputText value="#{localizacaoalertaController.selected.dataInclusao}" title="#{bundle.ViewLocalizacaoalertaTitle_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewLocalizacaoalertaLabel_alertaId}"/>
+                    <h:outputText value="#{localizacaoalertaController.selected.alertaId}" title="#{bundle.ViewLocalizacaoalertaTitle_alertaId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{localizacaoalertaController.destroyAndView}" value="#{bundle.ViewLocalizacaoalertaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewLocalizacaoalertaEditLink}"/>
+                <br />
+                <h:commandLink action="#{localizacaoalertaController.prepareCreate}" value="#{bundle.ViewLocalizacaoalertaCreateLink}" />
+                <br />
+                <h:commandLink action="#{localizacaoalertaController.prepareList}" value="#{bundle.ViewLocalizacaoalertaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewLocalizacaoalertaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

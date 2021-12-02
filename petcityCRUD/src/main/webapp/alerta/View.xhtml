@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAlertaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAlertaLabel_id}"/>
+                    <h:outputText value="#{alertaController.selected.id}" title="#{bundle.ViewAlertaTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewAlertaLabel_descricao}"/>
+                    <h:outputText value="#{alertaController.selected.descricao}" title="#{bundle.ViewAlertaTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewAlertaLabel_dataInclusao}"/>
+                    <h:outputText value="#{alertaController.selected.dataInclusao}" title="#{bundle.ViewAlertaTitle_dataInclusao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewAlertaLabel_tipoocorrenciaId}"/>
+                    <h:outputText value="#{alertaController.selected.tipoocorrenciaId}" title="#{bundle.ViewAlertaTitle_tipoocorrenciaId}"/>
+                    <h:outputText value="#{bundle.ViewAlertaLabel_usuarioId}"/>
+                    <h:outputText value="#{alertaController.selected.usuarioId}" title="#{bundle.ViewAlertaTitle_usuarioId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{alertaController.destroyAndView}" value="#{bundle.ViewAlertaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAlertaEditLink}"/>
+                <br />
+                <h:commandLink action="#{alertaController.prepareCreate}" value="#{bundle.ViewAlertaCreateLink}" />
+                <br />
+                <h:commandLink action="#{alertaController.prepareList}" value="#{bundle.ViewAlertaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAlertaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

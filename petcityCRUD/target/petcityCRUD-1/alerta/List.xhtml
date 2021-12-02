@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAlertaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAlertaEmpty}" rendered="#{alertaController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{alertaController.items.rowCount > 0}">
+                    <h:outputText value="#{alertaController.pagination.pageFirstItem + 1}..#{alertaController.pagination.pageLastItem + 1}/#{alertaController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{alertaController.previous}" value="#{bundle.Previous} #{alertaController.pagination.pageSize}" rendered="#{alertaController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{alertaController.next}" value="#{bundle.Next} #{alertaController.pagination.pageSize}" rendered="#{alertaController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{alertaController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertaTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertaTitle_descricao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertaTitle_dataInclusao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dataInclusao}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertaTitle_tipoocorrenciaId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoocorrenciaId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAlertaTitle_usuarioId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioId}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{alertaController.prepareView}" value="#{bundle.ListAlertaViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{alertaController.prepareEdit}" value="#{bundle.ListAlertaEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{alertaController.destroy}" value="#{bundle.ListAlertaDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{alertaController.prepareCreate}" value="#{bundle.ListAlertaCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAlertaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
